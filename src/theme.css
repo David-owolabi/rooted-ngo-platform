@@ -1,0 +1,23 @@
+:root {
+  --color-primary: #1F4D2C;    /* canopy green */
+  --color-accent: #E0A526;      /* marigold - CTAs */
+  --color-secondary: #7A4B32;   /* soil brown */
+  --color-success: #4C8C4A;     /* growth green - progress meter */
+  --color-bg: #FAF6EE;          /* cream */
+  --color-text: #22281F;        /* charcoal moss */
+  --font-display: Georgia, serif;
+  --font-body: 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-mono: 'Courier New', monospace;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  color: var(--color-primary);
+}
