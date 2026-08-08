@@ -1,23 +1,171 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
 :root {
-  --color-primary: #1F4D2C;    /* canopy green */
-  --color-accent: #E0A526;      /* marigold - CTAs */
-  --color-secondary: #7A4B32;   /* soil brown */
-  --color-success: #4C8C4A;     /* growth green - progress meter */
-  --color-bg: #FAF6EE;          /* cream */
-  --color-text: #22281F;        /* charcoal moss */
-  --font-display: Georgia, serif;
-  --font-body: 'Segoe UI', Helvetica, Arial, sans-serif;
-  --font-mono: 'Courier New', monospace;
+  /* ---- Color palette ---- */
+  --canopy-green: #1F4D2C;      /* primary */
+  --marigold: #E0A526;          /* CTA / accent */
+  --soil-brown: #7A4A12;        /* secondary */
+  --growth-green: #4C8C1A;      /* success / progress */
+  --cream: #FAF6EE;             /* page background */
+  --charcoal-moss: #22281F;     /* body text */
+
+  /* Derived tints/shades — kept in one place so nobody eyeballs a new color */
+  --canopy-green-dark: #163A20;
+  --canopy-green-tint: rgba(31, 77, 44, 0.08);
+  --marigold-dark: #C08E1C;
+  --cream-dim: #F1EBDC;
+  --charcoal-moss-soft: rgba(34, 40, 31, 0.65);
+  --border-hairline: rgba(34, 40, 31, 0.12);
+
+  /* ---- Typography ---- */
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  /* Type scale */
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.5rem;
+  --text-4xl: 3.5rem;
+
+  /* Spacing (8px base) */
+  --space-1: 0.5rem;
+  --space-2: 0.75rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+  --space-7: 4.5rem;
+  --space-8: 6rem;
+
+  /* Layout */
+  --max-width: 1180px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-full: 999px;
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  background: var(--color-bg);
-  color: var(--color-text);
+  background: var(--cream);
+  color: var(--charcoal-moss);
   font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   font-family: var(--font-display);
-  color: var(--color-primary);
+  color: var(--canopy-green);
+  margin: 0;
+  line-height: 1.15;
+}
+
+a {
+  color: inherit;
+}
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-base);
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s var(--ease-standard), background 0.15s var(--ease-standard), border-color 0.15s var(--ease-standard);
+  text-decoration: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--canopy-green);
+  outline-offset: 3px;
+}
+
+.btn-primary {
+  background: var(--canopy-green);
+  color: var(--cream);
+}
+.btn-primary:hover {
+  background: var(--canopy-green-dark);
+  transform: translateY(-1px);
+}
+
+.btn-accent {
+  background: var(--marigold);
+  color: var(--charcoal-moss);
+}
+.btn-accent:hover {
+  background: var(--marigold-dark);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--canopy-green);
+  border-color: var(--canopy-green);
+}
+.btn-outline:hover {
+  background: var(--canopy-green-tint);
+  transform: translateY(-1px);
+}
+
+/* ---- Signature element: the growth meter ----
+   Every progress bar on the platform (campaign cards, campaign
+   details, landing page stats) reuses this exact structure:
+   a rounded track filled in growth green, with a small marker
+   at the fill line. Keep it a plain styled <div> — no SVG,
+   no chart library — so it stays cheap everywhere it appears. */
+.growth-meter {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  background: var(--cream-dim);
+  border-radius: var(--radius-full);
+  overflow: visible;
+}
+
+.growth-meter__fill {
+  height: 100%;
+  background: var(--growth-green);
+  border-radius: var(--radius-full);
+  transition: width 0.6s var(--ease-standard);
+  position: relative;
+}
+
+.growth-meter__marker {
+  position: absolute;
+  top: 50%;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  background: var(--cream);
+  border: 2px solid var(--growth-green);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .growth-meter__fill,
+  .btn {
+    transition: none;
+  }
 }
