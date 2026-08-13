@@ -26,4 +26,22 @@ export const initialCampaigns = [
     raisedAmount: 480000,
     image: "",
   },
+  {
+    id: 4,
+    title: "Improving Sanitation in Rural Schools",
+    category: "Water & Sanitation",
+    description: "Improving sanitation facilities in rural schools.",
+    goalAmount: 500000,
+    raisedAmount: 210000,
+    image: "",
+  },
+  {
+    id: 5,
+    title: "Scholarship Fund for Underprivileged Students",
+    category: "Education",
+    description: "Supporting education for underprivileged children.",
+    goalAmount: 1000000,
+    raisedAmount: 300000,
+    image: "",
+  }
 ];
