@@ -32,3 +32,49 @@
   cursor: pointer;
   color: var(--charcoal-moss);
 }
+.campaign-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.campaign-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--charcoal-moss);
+}
+
+.campaign-form input,
+.campaign-form textarea {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border-hairline);
+  font-weight: 400;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-error {
+  color: #B23A3A;
+  font-size: var(--text-xs);
+  font-weight: 500;
+}
+
+.campaign-form__actions {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.modal__body p {
+  margin-bottom: var(--space-3);
+}
+
+.modal__body .btn {
+  margin-right: var(--space-2);
+}
