@@ -33,7 +33,7 @@ function Navbar() {
         </Link>
 
         <nav className={`navbar__links ${isMenuOpen ? "navbar__links--open" : ""}`}>
-          <Link to ="/home" onClick={closeMenu}>Home</Link>
+          <Link to ="/" onClick={closeMenu}>Home</Link>
           <Link to="/campaigns" onClick={closeMenu}>Campaigns</Link>
           <Link to="/volunteer" onClick={closeMenu}>Volunteer</Link>
           <Link to="/about" onClick={closeMenu}>About</Link>
