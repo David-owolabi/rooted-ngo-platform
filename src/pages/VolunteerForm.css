@@ -1,0 +1,42 @@
+.volunteer-form {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4) var(--space-8);
+}
+
+.volunteer-form__intro {
+  color: var(--charcoal-moss-soft);
+  margin-bottom: var(--space-4);
+}
+
+.volunteer-form__availability {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.volunteer-form__availability-label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--charcoal-moss);
+}
+
+.volunteer-form__checkboxes {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.volunteer-form__checkbox {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 400 !important;
+  font-size: var(--text-sm);
+}
+
+.volunteer-form--confirmation {
+  text-align: center;
+  padding-top: var(--space-8);
+}

@@ -6,6 +6,7 @@ import CampaignsPage from "./pages/CampaignsPage";
 import CampaignDetails from "./pages/CampaignDetails";
 import VolunteerForm from "./pages/VolunteerForm";
 import DonationForm from "./pages/DonationForm";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/donate" element={<DonationForm />} />
             <Route path="/donate/:id" element={<DonationForm />} />
             <Route path="/volunteer" element={<VolunteerForm />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </main>
 
