@@ -1,0 +1,93 @@
+{
+  "campaigns": [
+    {
+      "id": "1",
+      "title": "Clean Water for Ajah Community",
+      "category": "Water & Sanitation",
+      "description": "Providing borehole access to 200 households.",
+      "goalAmount": 500000,
+      "raisedAmount": 215000,
+      "image": ""
+    },
+    {
+      "id": "2",
+      "title": "School Supplies Drive",
+      "category": "Education",
+      "description": "Books and uniforms for 150 children.",
+      "goalAmount": 300000,
+      "raisedAmount": 95000,
+      "image": ""
+    },
+    {
+      "id": "3",
+      "title": "Homeless Youth Shelter Support",
+      "category": "Shelter",
+      "description": "Monthly support for a Lagos youth shelter.",
+      "goalAmount": 750000,
+      "raisedAmount": 480000,
+      "image": ""
+    },
+    {
+      "id": "4",
+      "title": "Improving Sanitation in Rural Schools",
+      "category": "Water & Sanitation",
+      "description": "Improving sanitation facilities in rural schools.",
+      "goalAmount": 500000,
+      "raisedAmount": 210000,
+      "image": ""
+    },
+    {
+      "id": "5",
+      "title": "Scholarship Fund for Underprivileged Students",
+      "category": "Education",
+      "description": "Supporting education for underprivileged children.",
+      "goalAmount": 1000000,
+      "raisedAmount": 300000,
+      "image": ""
+    },
+    {
+      "title": "Clean water for new horizon",
+      "category": "Education",
+      "description": "We need clean water",
+      "goalAmount": 6000000,
+      "raisedAmount": 0,
+      "image": "",
+      "id": "f1y86nIXow4"
+    },
+    {
+      "title": "Clean",
+      "category": "Water & Sanitation",
+      "description": "djdoeoe",
+      "goalAmount": 249999,
+      "raisedAmount": 0,
+      "image": "",
+      "id": "5ZmYI6wu5-U"
+    }
+  ],
+  "volunteers": [
+    {
+      "name": "David Owolabi",
+      "email": "davidowolabi252@gmail.com",
+      "phone": "08163062554",
+      "skills": "teaching",
+      "availability": [
+        "Weekends"
+      ],
+      "submittedAt": "2026-08-18T09:47:13.295Z",
+      "id": "oyjQs8Y1iUM"
+    }
+  ],
+  "donations": [
+    {
+      "campaignId": "1",
+      "campaignTitle": "Clean Water for Ajah Community",
+      "amount": 5000,
+      "donorName": "David",
+      "donorEmail": "davidowolabi252@gmail.com",
+      "reference": "RTD-46970237",
+      "donatedAt": "2026-08-18T09:56:10.237Z",
+      "id": "vlWEPN_Hfg8"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

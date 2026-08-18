@@ -45,7 +45,7 @@ function VolunteerForm() {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
@@ -53,14 +53,29 @@ function VolunteerForm() {
       return;
     }
     setErrors({});
-    setSubmitted(true);
+
+    try {
+      await fetch("http://localhost:3001/volunteers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          submittedAt: new Date().toISOString(),
+        }),
+      });
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Failed to submit volunteer form:", err);
+    }
   };
 
   if (submitted) {
     return (
       <div className="volunteer-form volunteer-form--confirmation">
         <h1>Thanks, {formData.name.split(" ")[0]}</h1>
-        <p>We've got your details and we'll be in touch about how you can help.</p>
+        <p>
+          We've got your details and we'll be in touch about how you can help.
+        </p>
       </div>
     );
   }
@@ -75,19 +90,34 @@ function VolunteerForm() {
       <form onSubmit={handleSubmit} className="campaign-form">
         <label>
           Full name
-          <input type="text" name="name" value={formData.name} onChange={handleChange} />
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+          />
           {errors.name && <span className="form-error">{errors.name}</span>}
         </label>
 
         <label>
           Email
-          <input type="email" name="email" value={formData.email} onChange={handleChange} />
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
           {errors.email && <span className="form-error">{errors.email}</span>}
         </label>
 
         <label>
           Phone (optional)
-          <input type="tel" name="phone" value={formData.phone} onChange={handleChange} />
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+          />
         </label>
 
         <label>
@@ -102,7 +132,9 @@ function VolunteerForm() {
         </label>
 
         <div className="volunteer-form__availability">
-          <span className="volunteer-form__availability-label">Availability</span>
+          <span className="volunteer-form__availability-label">
+            Availability
+          </span>
           <div className="volunteer-form__checkboxes">
             {AVAILABILITY_OPTIONS.map((option) => (
               <label key={option} className="volunteer-form__checkbox">
@@ -121,7 +153,9 @@ function VolunteerForm() {
         </div>
 
         <div className="campaign-form__actions">
-          <button type="submit" className="btn btn-accent">Submit</button>
+          <button type="submit" className="btn btn-accent">
+            Submit
+          </button>
         </div>
       </form>
     </div>

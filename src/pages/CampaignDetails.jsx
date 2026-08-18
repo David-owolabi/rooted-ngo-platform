@@ -11,7 +11,7 @@ function CampaignDetails() {
   const [showEdit, setShowEdit] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
-  const campaign = campaigns.find((c) => c.id === Number(id));
+  const campaign = campaigns.find((c) => String(c.id) === id);
 
   const [formData, setFormData] = useState({
     title: campaign?.title || "",
@@ -26,7 +26,7 @@ function CampaignDetails() {
 
   const percentFunded = Math.min(
     100,
-    Math.round((campaign.raisedAmount / campaign.goalAmount) * 100)
+    Math.round((campaign.raisedAmount / campaign.goalAmount) * 100),
   );
 
   const handleChange = (e) => {
@@ -38,7 +38,8 @@ function CampaignDetails() {
     const newErrors = {};
     if (!formData.title.trim()) newErrors.title = "Title is required";
     if (!formData.category.trim()) newErrors.category = "Category is required";
-    if (!formData.description.trim()) newErrors.description = "Description is required";
+    if (!formData.description.trim())
+      newErrors.description = "Description is required";
     if (!formData.goalAmount || Number(formData.goalAmount) <= 0)
       newErrors.goalAmount = "Goal amount must be greater than 0";
     if (formData.raisedAmount === "" || Number(formData.raisedAmount) < 0)
@@ -70,7 +71,7 @@ function CampaignDetails() {
   };
 
   const related = campaigns.filter(
-    (c) => c.category === campaign.category && c.id !== campaign.id
+    (c) => c.category === campaign.category && String(c.id) !== campaign.id,
   );
 
   return (
@@ -142,8 +143,8 @@ function CampaignDetails() {
             <div className="campaign-details__related-list">
               {related.map((c) => (
                 <Link
-                  key={c.id}
-                  to={`/campaigns/${c.id}`}
+                  key={String(c.id)}
+                  to={`/campaigns/${String(c.id)}`}
                   className="campaign-details__related-pill"
                 >
                   {c.title}
@@ -154,7 +155,11 @@ function CampaignDetails() {
         )}
       </div>
 
-      <Modal isOpen={showEdit} onClose={() => setShowEdit(false)} title="Edit campaign">
+      <Modal
+        isOpen={showEdit}
+        onClose={() => setShowEdit(false)}
+        title="Edit campaign"
+      >
         <form onSubmit={handleEditSubmit} className="campaign-form">
           <label>
             Title
@@ -175,7 +180,9 @@ function CampaignDetails() {
               value={formData.category}
               onChange={handleChange}
             />
-            {errors.category && <span className="form-error">{errors.category}</span>}
+            {errors.category && (
+              <span className="form-error">{errors.category}</span>
+            )}
           </label>
 
           <label>
@@ -243,7 +250,10 @@ function CampaignDetails() {
         <button className="btn btn-accent" onClick={handleDelete}>
           Yes, delete
         </button>
-        <button className="btn btn-outline" onClick={() => setShowDeleteConfirm(false)}>
+        <button
+          className="btn btn-outline"
+          onClick={() => setShowDeleteConfirm(false)}
+        >
           Cancel
         </button>
       </Modal>

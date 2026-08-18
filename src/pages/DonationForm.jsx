@@ -11,7 +11,7 @@ function DonationForm() {
   const { id } = useParams();
   const { campaigns, updateCampaign } = useCampaigns();
 
-  const campaign = id ? campaigns.find((c) => c.id === Number(id)) : null;
+  const campaign = id ? campaigns.find((c) => c.id === id) : null;
 
   const [selectedCampaignId, setSelectedCampaignId] = useState(
     campaign ? campaign.id : "",
@@ -25,8 +25,8 @@ function DonationForm() {
   const [reference, setReference] = useState("");
 
   const activeCampaign = id
-    ? campaign
-    : campaigns.find((c) => c.id === Number(selectedCampaignId));
+  ? campaign
+  : campaigns.find((c) => String(c.id) === selectedCampaignId);
 
   const handlePreset = (amount) => {
     setSelectedAmount(amount);
@@ -76,11 +76,26 @@ function DonationForm() {
       return;
     }
 
-    updateCampaign(activeCampaign.id, {
+    await updateCampaign(activeCampaign.id, {
       raisedAmount: activeCampaign.raisedAmount + getAmount(),
     });
 
     const mockRef = `RTD-${Date.now().toString().slice(-8)}`;
+
+    await fetch("http://localhost:3001/donations", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        campaignId: activeCampaign.id,
+        campaignTitle: activeCampaign.title,
+        amount: getAmount(),
+        donorName,
+        donorEmail,
+        reference: mockRef,
+        donatedAt: new Date().toISOString(),
+      }),
+    });
+
     setReference(mockRef);
     setStatus("success");
   };
@@ -128,7 +143,9 @@ function DonationForm() {
 
       {activeCampaign ? (
         <div className="donation-form__campaign-summary">
-          <span className="donation-form__category-badge">{activeCampaign.category}</span>
+          <span className="donation-form__category-badge">
+            {activeCampaign.category}
+          </span>
           <h3>{activeCampaign.title}</h3>
         </div>
       ) : (
