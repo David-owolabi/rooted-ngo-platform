@@ -7,7 +7,7 @@ import CampaignDetails from "./pages/CampaignDetails";
 import VolunteerForm from "./pages/VolunteerForm";
 import DonationForm from "./pages/DonationForm";
 import About from "./pages/About";
-import AddCampaignForm from "./admin/AddCampaignForm";
+import AddCampaignForm from "./pages/AddCampaignForm";
 
 function App() {
   return (
