@@ -141,7 +141,7 @@ function CampaignsPage() {
         <header className="campaigns-page__header">
           <h1>All campaigns</h1>
           <p>
-            Every campaign currently live on Rooted — search, filter, and
+            Every campaign currently live on Rooted — you can search, filter, and
             sort to find where you want to put your support.
           </p>
         </header>

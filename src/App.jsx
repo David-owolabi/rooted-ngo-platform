@@ -7,6 +7,7 @@ import CampaignDetails from "./pages/CampaignDetails";
 import VolunteerForm from "./pages/VolunteerForm";
 import DonationForm from "./pages/DonationForm";
 import About from "./pages/About";
+import AddCampaignForm from "./admin/AddCampaignForm";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <main className="app__main">
           <Routes>
             <Route path="/" element={<LandingPage />} />
+            <Route path="/addcampaign" element={<AddCampaignForm />} />
             <Route path="/campaigns" element={<CampaignsPage />} />
             <Route path="/campaigns/:id" element={<CampaignDetails />} />
             <Route path="/donate" element={<DonationForm />} />
