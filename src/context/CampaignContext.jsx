@@ -1,25 +1,53 @@
-import { createContext, useContext, useState } from "react";
-import { initialCampaigns } from "../data/campaigns";
+import { createContext, useContext, useState, useEffect } from "react";
 
+const API_URL = "http://localhost:3001/campaigns";
 const CampaignContext = createContext();
 
 export function CampaignProvider({ children }) {
-  const [campaigns, setCampaigns] = useState(initialCampaigns);
+  const [campaigns, setCampaigns] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const addCampaign = (campaign) =>
-    setCampaigns((prev) => [...prev, { ...campaign, id: Date.now() }]);
+  useEffect(() => {
+    fetch(API_URL)
+      .then((res) => res.json())
+      .then((data) => {
+        setCampaigns(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to load campaigns:", err);
+        setLoading(false);
+      });
+  }, []);
 
-  const updateCampaign = (id, updates) =>
-    setCampaigns((prev) =>
-      prev.map((c) => (c.id === id ? { ...c, ...updates } : c))
-    );
+  const addCampaign = async (campaign) => {
+    const res = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(campaign),
+    });
+    const newCampaign = await res.json();
+    setCampaigns((prev) => [...prev, newCampaign]);
+  };
 
-  const deleteCampaign = (id) =>
+  const updateCampaign = async (id, updates) => {
+    const res = await fetch(`${API_URL}/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updates),
+    });
+    const updated = await res.json();
+    setCampaigns((prev) => prev.map((c) => (c.id === id ? updated : c)));
+  };
+
+  const deleteCampaign = async (id) => {
+    await fetch(`${API_URL}/${id}`, { method: "DELETE" });
     setCampaigns((prev) => prev.filter((c) => c.id !== id));
+  };
 
   return (
     <CampaignContext.Provider
-      value={{ campaigns, addCampaign, updateCampaign, deleteCampaign }}
+      value={{ campaigns, loading, addCampaign, updateCampaign, deleteCampaign }}
     >
       {children}
     </CampaignContext.Provider>

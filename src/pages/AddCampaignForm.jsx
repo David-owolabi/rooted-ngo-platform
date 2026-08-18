@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCampaigns } from "../context/CampaignContext";
 import "./AddCampaignForm.css";
@@ -9,10 +9,17 @@ function AddCampaignForm() {
   const { campaigns, addCampaign } = useCampaigns();
   const navigate = useNavigate();
 
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("");
+
   const existingCategories = [...new Set(campaigns.map((c) => c.category))];
 
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState(existingCategories[0] || "");
+  useEffect(() => {
+    if (!category && existingCategories.length > 0) {
+      setCategory(existingCategories[0]);
+    }
+  }, [existingCategories, category]);
+
   const [customCategory, setCustomCategory] = useState("");
   const [description, setDescription] = useState("");
   const [goalAmount, setGoalAmount] = useState("");

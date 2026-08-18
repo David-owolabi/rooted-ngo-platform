@@ -37,6 +37,7 @@ function Navbar() {
           <Link to="/campaigns" onClick={closeMenu}>Campaigns</Link>
           <Link to="/volunteer" onClick={closeMenu}>Volunteer</Link>
           <Link to="/about" onClick={closeMenu}>About</Link>
+          <Link to="/addcampaign" onClick={closeMenu}>Add Campaign</Link>
         </nav>
 
         <Link to="/donate" className="btn btn-accent navbar__donate">
